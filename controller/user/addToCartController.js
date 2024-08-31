@@ -6,13 +6,13 @@ const addToCartController = async (req, res) => {
         const currentUser = req.userId
 
 
-        const isProductAvailable = await addToCartModel.find({ productId })
+        const isProductAvailable = await addToCartModel.findOne({ productId })
 
         if(isProductAvailable){
             return res.json({
                 message : "Already exits in Add to cart",
-                success : true,
-                error : false
+                success : false,
+                error : true
             })
         }
         const payload = {
@@ -24,9 +24,9 @@ const addToCartController = async (req, res) => {
         const newAddToCart = new addToCartModel(payload)
         const saveProduct = await newAddToCart.save()
 
-        res.json({
+        return res.json({
             data : saveProduct,
-            message : "Product Added",
+            message : "Product Added to cart",
             success : true,
             error : false
         })

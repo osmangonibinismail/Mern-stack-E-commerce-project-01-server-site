@@ -8,5 +8,5 @@ const addToCart = mongoose.Schema({
     timestamps : true
 })
 
-const addToCartModel = mongoose.model("addToCart",productSchema)
+const addToCartModel = mongoose.model("addToCart",addToCart)
 module.exports = addToCartModel
